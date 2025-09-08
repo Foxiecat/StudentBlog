@@ -1,0 +1,56 @@
+using FastEndpoints;
+using FastEndpoints.Security;
+using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
+using src.Database;
+using src.Extensions;
+
+namespace src;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+        builder.Services.RegisterRepositories();
+        builder.Services.RegisterMappers();
+        
+        builder.Services.AddAuthorization();
+        
+        builder.Services.AddAuthenticationJwtBearer(secret => 
+                secret.SigningKey = builder.Configuration.GetSection("JWT")["Key"]);
+        builder.Services.AddAuthorization();
+        builder.Services.AddFastEndpoints();
+        builder.Services.AddResponseCaching();
+        
+        builder.Services.AddDbContext<StudentBlogDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+        builder.Services.AddOpenApi();
+
+        var app = builder.Build();
+        
+        app.UseResponseCaching();
+        app.UseFastEndpoints(config => 
+        {
+            config.Versioning.Prefix = "v";
+        });
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+            app.MapScalarApiReference();
+        }
+
+        app.UseHttpsRedirection();
+        
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.Run();
+    }
+}
