@@ -9,49 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e131ce6d-6dca-4d5a-9553-b94439bbd058" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Database/StudentBlogDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/Comment.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/HalDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/Post.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/User.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extensions/OutputCacheExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extensions/ServiceCollectionExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Shared/Interfaces/IMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Shared/Interfaces/IRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Users/DTOs/UserRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Users/DTOs/UserResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Users/Endpoints/UserRegistration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Users/UserMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Features/Users/UserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Validators/UserRequestValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/src.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/src.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/src.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Features/Shared/LinkHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +32,15 @@
     <setting file="file://$PROJECT_DIR$/Extensions/ServiceCollectionExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Shared/Interfaces/IMapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Shared/Interfaces/IRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Shared/LinkHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Users/DTOs/UserRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Users/DTOs/UserResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Users/Endpoints/UserRegistration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Features/Users/UserMapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Validators/UserRequestValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -179,16 +140,28 @@
       <workItem from="1757315443915" duration="68000" />
       <workItem from="1757315521439" duration="982000" />
       <workItem from="1757316515753" duration="3545000" />
-      <workItem from="1757320469723" duration="5977000" />
+      <workItem from="1757320469723" duration="8078000" />
     </task>
+    <task id="LOCAL-00001" summary="User and Database stuff">
+      <option name="closed" value="true" />
+      <created>1757326659047</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1757326659047</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="User and Database stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="User and Database stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
