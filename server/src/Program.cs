@@ -18,9 +18,9 @@ public class Program
         builder.Services.RegisterMappers();
         
         builder.Services.AddAuthorization();
-        
-        builder.Services.AddAuthenticationJwtBearer(secret => 
-                secret.SigningKey = builder.Configuration.GetSection("JWT")["Key"]);
+
+        builder.Services.AddAuthenticationJwtBearer(secret =>
+            secret.SigningKey = builder.Configuration["JWT:Key"]);
         builder.Services.AddAuthorization();
         builder.Services.AddFastEndpoints();
         builder.Services.AddResponseCaching();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3LW3em6BeG8=",
+  "dgSpecHash": "D1yH79BVLjY=",
   "success": true,
-  "projectFilePath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src.csproj",
+  "projectFilePath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj",
   "expectedPackageFiles": [
     "/Users/neptune/.nuget/packages/fastendpoints/7.0.1/fastendpoints.7.0.1.nupkg.sha512",
     "/Users/neptune/.nuget/packages/fastendpoints.attributes/7.0.1/fastendpoints.attributes.7.0.1.nupkg.sha512",

@@ -1260,11 +1260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/neptune/Documents/Developer/StudentBlog/Server/src.csproj",
+      "projectUniqueName": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj",
       "projectName": "src",
-      "projectPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src.csproj",
+      "projectPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj",
       "packagesPath": "/Users/neptune/.nuget/packages/",
-      "outputPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/obj/",
+      "outputPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/neptune/.nuget/NuGet/NuGet.Config"
