@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj": {}
+    "/storage/Dev/StudentBlog/server/src/src.csproj": {}
   },
   "projects": {
-    "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj": {
+    "/storage/Dev/StudentBlog/server/src/src.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj",
+        "projectUniqueName": "/storage/Dev/StudentBlog/server/src/src.csproj",
         "projectName": "src",
-        "projectPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj",
-        "packagesPath": "/Users/neptune/.nuget/packages/",
-        "outputPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/obj/",
+        "projectPath": "/storage/Dev/StudentBlog/server/src/src.csproj",
+        "packagesPath": "/home/foxiecat/.nuget/packages/",
+        "outputPath": "/storage/Dev/StudentBlog/server/src/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/neptune/.nuget/NuGet/NuGet.Config"
+          "/home/foxiecat/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -36,9 +36,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/neptune/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/foxiecat/.dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

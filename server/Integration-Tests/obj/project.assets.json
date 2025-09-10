@@ -2321,7 +2321,7 @@
     "src/1.0.0": {
       "type": "project",
       "path": "../src/src.csproj",
-      "msbuildProject": "../src/src.csproj"
+      "msbuildProject": "../../../../../../storage/Dev/StudentBlog/server/src/src.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2335,19 +2335,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/neptune/.nuget/packages/": {}
+    "/home/foxiecat/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/neptune/Documents/Developer/StudentBlog/Server/Integration-Tests/Integration-Tests.csproj",
+      "projectUniqueName": "/storage/Dev/StudentBlog/server/Integration-Tests/Integration-Tests.csproj",
       "projectName": "Integration-Tests",
-      "projectPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/Integration-Tests/Integration-Tests.csproj",
-      "packagesPath": "/Users/neptune/.nuget/packages/",
-      "outputPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/Integration-Tests/obj/",
+      "projectPath": "/storage/Dev/StudentBlog/server/Integration-Tests/Integration-Tests.csproj",
+      "packagesPath": "/home/foxiecat/.nuget/packages/",
+      "outputPath": "/storage/Dev/StudentBlog/server/Integration-Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/neptune/.nuget/NuGet/NuGet.Config"
+        "/home/foxiecat/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -2359,8 +2359,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj": {
-              "projectPath": "/Users/neptune/Documents/Developer/StudentBlog/Server/src/src.csproj"
+            "/storage/Dev/StudentBlog/server/src/src.csproj": {
+              "projectPath": "/storage/Dev/StudentBlog/server/src/src.csproj"
             }
           }
         }
@@ -2373,9 +2373,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -2418,7 +2418,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/neptune/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/foxiecat/.dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
