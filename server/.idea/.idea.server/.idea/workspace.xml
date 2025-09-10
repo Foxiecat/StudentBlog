@@ -10,10 +10,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e131ce6d-6dca-4d5a-9553-b94439bbd058" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/Integration-Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/UnitTest1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Debug/net9.0/Integration-Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Integration-Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Integration-Tests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/Integration-Tests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Integration-Tests/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/Unit-Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/UserMapperTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Debug/net9.0/Unit-Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Unit-Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Unit-Tests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/Unit-Tests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Unit-Tests/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/src.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/obj/Debug/net9.0/src.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/obj/Debug/net9.0/src.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/obj/Debug/net9.0/src.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/obj/Debug/net9.0/src.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/src/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,24 +60,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Database/StudentBlogDbContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Entities/Comment.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Entities/HalDTO.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Entities/Post.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Entities/User.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Extensions/OutputCacheExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Extensions/ServiceCollectionExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Shared/Interfaces/IMapper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Shared/Interfaces/IRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Shared/LinkHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Users/DTOs/UserRequest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Users/DTOs/UserResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Users/Endpoints/UserRegistration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Features/Users/UserMapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Integration-Tests/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Unit-Tests/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Validators/UserRequestValidator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Unit-Tests/UserMapperTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -184,7 +201,7 @@
       <workItem from="1757315521439" duration="982000" />
       <workItem from="1757316515753" duration="3545000" />
       <workItem from="1757320469723" duration="9260000" />
-      <workItem from="1757401860403" duration="1493000" />
+      <workItem from="1757401860403" duration="5634000" />
     </task>
     <task id="LOCAL-00001" summary="User and Database stuff">
       <option name="closed" value="true" />
@@ -202,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757328763890</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="I was a dummy">
+      <option name="closed" value="true" />
+      <created>1757403790176</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757403790176</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +239,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="User and Database stuff" />
     <MESSAGE value="Finished (untested) user registration endpoint function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished (untested) user registration endpoint function" />
+    <MESSAGE value="I was a dummy" />
+    <option name="LAST_COMMIT_MESSAGE" value="I was a dummy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
