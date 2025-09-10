@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "g09jY13nlRk=",
   "success": true,
-  "projectFilePath": "/home/foxiecat/Dev/StudentBlog/server/Integration-Tests/Integration-Tests.csproj",
+  "projectFilePath": "/storage/Dev/StudentBlog/server/Integration-Tests/Integration-Tests.csproj",
   "expectedPackageFiles": [
     "/home/foxiecat/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/home/foxiecat/.nuget/packages/coverlet.collector/6.0.2/coverlet.collector.6.0.2.nupkg.sha512",

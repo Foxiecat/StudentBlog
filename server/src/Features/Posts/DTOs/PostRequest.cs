@@ -1,6 +1,7 @@
 namespace src.Features.Posts.DTOs;
 
-public class PostRequest
+public record PostRequest
 {
-    
-}
+    public string? Title { get; set; }
+    public string? Content { get; set; }
+}   

@@ -2321,7 +2321,7 @@
     "src/1.0.0": {
       "type": "project",
       "path": "../src/src.csproj",
-      "msbuildProject": "../../../../../../storage/Dev/StudentBlog/server/src/src.csproj"
+      "msbuildProject": "../src/src.csproj"
     }
   },
   "projectFileDependencyGroups": {
