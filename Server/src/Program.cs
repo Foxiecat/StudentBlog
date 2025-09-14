@@ -5,6 +5,7 @@ using Scalar.AspNetCore;
 using src.Database;
 using src.Extensions;
 using src.Features.Shared;
+using src.Middleware;
 
 namespace src;
 
@@ -12,7 +13,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.RegisterRepositories();
@@ -20,14 +21,18 @@ public class Program
         
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddSingleton<LinkHelper>();
-        
-        builder.Services.AddAuthorization();
 
+        builder.Services
+            .AddProblemDetails()
+            .AddExceptionHandler<GlobalExceptionHandler>();
+        
         builder.Services.AddAuthenticationJwtBearer(secret =>
             secret.SigningKey = builder.Configuration["JWT:Key"]);
-        builder.Services.AddAuthorization();
-        builder.Services.AddFastEndpoints();
-        builder.Services.AddResponseCaching();
+        
+        builder.Services
+            .AddAuthorization()
+            .AddFastEndpoints()
+            .AddResponseCaching();
         
         builder.Services.AddDbContext<StudentBlogDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -35,13 +40,13 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
-        var app = builder.Build();
+        WebApplication app = builder.Build();
         
-        app.UseResponseCaching();
-        app.UseFastEndpoints(config => 
-        {
-            config.Versioning.Prefix = "v";
-        });
+        app.UseResponseCaching()
+           .UseFastEndpoints(config => 
+           {
+               config.Versioning.Prefix = "v"; 
+           });
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -51,9 +56,11 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseExceptionHandler("/error");
         
-        app.UseAuthentication();
-        app.UseAuthorization();
+        app.UseAuthentication()
+           .UseAuthorization();
 
         app.Run();
     }

@@ -25,7 +25,6 @@
       <Folder Include="Features\Comments\DTOs\" />
       <Folder Include="Features\Comments\Endpoints\" />
       <Folder Include="Features\Posts\Endpoints\" />
-      <Folder Include="Middleware\" />
     </ItemGroup>
 
     <ItemGroup>
