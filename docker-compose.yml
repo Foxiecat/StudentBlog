@@ -1,0 +1,15 @@
+services: 
+    database:
+        container_name: studentblog-db
+        image: postgres:17
+        ports:
+          - 5432:5432
+        environment:
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: StUdentBl0g_db
+            POSTGRES_DB: StudentBlog
+        volumes:
+          - studentblog-volume:/var/lib/postgresql/data
+
+volumes:
+    studentblog-volume:

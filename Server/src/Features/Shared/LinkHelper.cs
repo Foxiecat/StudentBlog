@@ -6,14 +6,14 @@ public class LinkHelper(LinkGenerator? linkGenerator)
 {
     public Link CreateLink(
         HttpContext context,
-        string actionName,
+        string endpointName,
         string relation,
         string method,
         object? values = null)
     {
         return new Link
         {
-            Href = linkGenerator?.GetPathByAction(context, action: actionName, values: values),
+            Href = linkGenerator?.GetPathByName(context, endpointName: endpointName, values: values),
             Rel = relation,
             Method = method
         };

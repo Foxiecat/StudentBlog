@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using src.Database;
 using src.Extensions;
+using src.Features.Shared;
 
 namespace src;
 
@@ -16,6 +17,9 @@ public class Program
         // Add services to the container.
         builder.Services.RegisterRepositories();
         builder.Services.RegisterMappers();
+        
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddSingleton<LinkHelper>();
         
         builder.Services.AddAuthorization();
 

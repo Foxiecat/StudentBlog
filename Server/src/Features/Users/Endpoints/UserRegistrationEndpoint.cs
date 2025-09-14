@@ -1,6 +1,4 @@
 using FastEndpoints;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using src.Entities;
 using src.Features.Shared;
 using src.Features.Shared.Interfaces;
@@ -8,10 +6,9 @@ using src.Features.Users.DTOs;
 
 namespace src.Features.Users.Endpoints;
 
-public class UserRegistration(
+public class UserRegistrationEndpoint(
     IUserRepository userRepository,
     IMapper<UserRequest, UserResponse, User> userMapper,
-    IPasswordHasher<User> passwordHasher,
     LinkHelper linkHelper) : Endpoint<UserRequest, UserResponse>
 {
     public override void Configure()
@@ -25,12 +22,15 @@ public class UserRegistration(
     {
         User user = userMapper.ToEntity(request);
         user.Id = Guid.NewGuid();
-        user.PasswordHash = passwordHasher.HashPassword(user, request.Password);
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
         user.Created = DateTime.UtcNow;
         user.LastActive = DateTime.UtcNow;
 
         User addedUser = await userRepository.AddAsync(user);
         UserResponse response = userMapper.ToResponse(addedUser);
+        
+        response.Links.Add(
+            linkHelper.CreateLink(HttpContext, "UserRegistration", "self", "POST"));
 
         await Send.OkAsync(response, ct);
     }

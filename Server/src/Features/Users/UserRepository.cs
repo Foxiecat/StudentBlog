@@ -1,15 +1,22 @@
 using System.Linq.Expressions;
+using src.Database;
 using src.Entities;
 using src.Features.Shared.Interfaces;
 
 namespace src.Features.Users;
 
 public interface IUserRepository : IRepository<User>;
-public class UserRepository : IUserRepository
+public class UserRepository(
+    StudentBlogDbContext dbContext,
+    ILogger<UserRepository> logger) : IUserRepository
 {
     public async Task<User> AddAsync(User entity)
     {
-        throw new NotImplementedException();
+        await dbContext.User.AddAsync(entity);
+        await dbContext.SaveChangesAsync();
+        
+        logger.LogInformation("User {entityId} was added to database", entity.Id);
+        return entity;
     }
 
     public async Task<User> GetByIdAsync(Guid id)
