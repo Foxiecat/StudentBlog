@@ -1,5 +1,3 @@
-using System.Net;
-
 namespace src.Extensions;
 
 public static class OutputCacheExtension
