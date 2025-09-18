@@ -1,8 +1,7 @@
-﻿using src.Entities;
-using src.Features.Users;
+﻿using src.Features.Users;
 using src.Features.Users.DTOs;
 
-namespace Unit_Tests;
+namespace Unit_Tests.User;
 
 public class UserMapperTest
 {
@@ -11,7 +10,7 @@ public class UserMapperTest
     [Fact]
     public void MapToResponse_When_UserEntityIsValid_Should_Return_UserResponse()
     {
-        User user = new()
+        src.Entities.User user = new()
         {
             Id = Guid.NewGuid(),
             Username = "user",
@@ -48,7 +47,7 @@ public class UserMapperTest
             Email = "email@email.com"
         };
         
-        User user = _userMapper.ToEntity(request);
+        src.Entities.User user = _userMapper.ToEntity(request);
         
         Assert.NotNull(user);
         Assert.Equal(request.Username, user.Username);
