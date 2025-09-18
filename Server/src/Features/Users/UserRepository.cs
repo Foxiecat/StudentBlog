@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using src.Database;
 using src.Entities;
 using src.Features.Shared.Interfaces;
@@ -19,14 +20,16 @@ public class UserRepository(
         return entity;
     }
 
-    public async Task<User> GetByIdAsync(Guid id)
+    public async Task<User?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await dbContext.User.FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<IEnumerable<User>> FindAsync(Expression<Func<User, bool>> predicate)
     {
-        throw new NotImplementedException();
+        return await dbContext.User
+            .Where(predicate)
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<User>> GetPagedAsync(int pageNumber, int pageSize)
