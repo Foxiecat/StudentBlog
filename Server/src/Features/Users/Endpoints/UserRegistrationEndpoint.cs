@@ -13,11 +13,11 @@ public class UserRegistrationEndpoint(
 {
     public override void Configure()
     {
-        Post("user/register");
+        Post("api/auth/register");
+        Description(builder => builder.WithName("UserRegistration"));
         AllowAnonymous();
-        Version(1);
     }
-
+    
     public override async Task HandleAsync(UserRequest request, CancellationToken ct)
     {
         User user = userMapper.ToEntity(request);
@@ -28,9 +28,14 @@ public class UserRegistrationEndpoint(
 
         User addedUser = await userRepository.AddAsync(user);
         UserResponse response = userMapper.ToResponse(addedUser);
-        
+
         response.Links.Add(
-            linkHelper.CreateLink(HttpContext, "UserRegistration", "self", "POST"));
+            linkHelper.CreateLink(
+                HttpContext,
+                endpointName: "GetUserById",
+                relation: "self",
+                method: "GET",
+                values: new { UserId = response.Id}));
 
         await Send.OkAsync(response, ct);
     }

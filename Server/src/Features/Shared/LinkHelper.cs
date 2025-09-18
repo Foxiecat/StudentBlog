@@ -8,12 +8,21 @@ public class LinkHelper(LinkGenerator? linkGenerator)
         HttpContext context,
         string endpointName,
         string relation,
-        string method,
+        string? method = null,
         object? values = null)
     {
+        if (method is null)
+        {
+            return new Link
+            {
+                Href = linkGenerator?.GetUriByName(context, endpointName, values: values),
+                Rel = relation,
+            };
+        }
+        
         return new Link
         {
-            Href = linkGenerator?.GetPathByName(context, endpointName: endpointName, values: values),
+            Href = linkGenerator?.GetUriByName(context, endpointName, values: values),
             Rel = relation,
             Method = method
         };
