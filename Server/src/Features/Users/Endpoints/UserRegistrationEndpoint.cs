@@ -37,7 +37,7 @@ public class UserRegistrationEndpoint(
     {
         User user = userMapper.ToEntity(request);
         user.Id = Guid.NewGuid();
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+        user.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(request.Password);
         user.Created = DateTime.UtcNow;
         user.LastActive = DateTime.UtcNow;
 
