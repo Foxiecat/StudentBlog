@@ -18,7 +18,7 @@ public class UserMapper : IMapper<UserRequest, UserResponse, User>
 
     public UserResponse ToResponse(User entity) => new()
         {
-            Id = entity.Id,
+            Id = entity.Id.Value,
             Username = entity.Username,
             Firstname = entity.Firstname,
             Lastname = entity.Lastname,
