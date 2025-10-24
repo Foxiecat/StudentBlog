@@ -3,6 +3,7 @@ using Microsoft.Extensions.Primitives;
 using src.Features.Shared.Endpoints;
 using src.Features.Shared.Interfaces;
 using src.Features.Users.DTOs;
+using src.Features.Users.Interfaces;
 using src.Utilities;
 
 namespace src.Features.Users.Endpoints.Auth;
@@ -11,7 +12,7 @@ public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<User
 {
     public override void Configure(IEndpointRouteBuilder app)
     {
-        app.MapPost("users/register", HandleAsync)
+        app.MapPost("auth/register", HandleAsync)
             .WithName("Register")
             .AllowAnonymous()
             .WithTags(Tags.Auth);
@@ -32,7 +33,7 @@ public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<User
             action: async cancellationToken =>
             {
                 var mapper = GetRequired<IMapper<UserRequest, UserResponse, User>>();
-                UserRepository repository = GetRequired<UserRepository>();
+                IUserRepository repository = GetRequired<IUserRepository>();
 
                 User user = mapper.ToEntity(request);
                 user.Id = Users.UserId.NewId;
@@ -43,14 +44,14 @@ public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<User
 
                 User? addedUser = await repository.AddAsync(user);
                 if (addedUser is null)
-                    BadRequest("Failed to register user");
+                    return BadRequest("Failed to register user");
 
                 UserResponse response = mapper.ToResponse(addedUser!);
 
                 StringSegment etag = ComputeETag(response);
                 SetETag(etag);
 
-                return Created($"/users/{response.Id.Value}", response);
+                return Created($"/users/{response.Id}", response);
             }, ct: ct);
     }
 }
