@@ -51,7 +51,7 @@ public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<User
                 StringSegment etag = ComputeETag(response);
                 SetETag(etag);
 
-                return Created($"/users/{response.Id}", response);
+                return Ok(response);
             }, ct: ct);
     }
 }
