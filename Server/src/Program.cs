@@ -1,6 +1,3 @@
-using System.Reflection;
-using Asp.Versioning;
-using Asp.Versioning.Builder;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using Serilog;
