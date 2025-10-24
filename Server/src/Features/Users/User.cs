@@ -18,20 +18,20 @@ public class User
     [Required]
     [MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters")]
     [MaxLength(30, ErrorMessage = "Invalid Length: Cannot exceed 30 characters")]
-    public string Username { get; init; } = string.Empty;
+    public string Username { get; set; } = string.Empty;
     
     [Required,
      MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters"),
      MaxLength(50, ErrorMessage = "Invalid Length: Cannot exceed 50 characters")]
-    public string Firstname { get; init; } = string.Empty;
+    public string Firstname { get; set; } = string.Empty;
     
     [Required,
      MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters"),
      MaxLength(50, ErrorMessage = "Invalid Length: Cannot exceed 50 characters")]
-    public string? Lastname { get; init; } = string.Empty;
+    public string? Lastname { get; set; } = string.Empty;
     
     [Required, EmailAddress]
-    public string? Email { get; init; }
+    public string? Email { get; set; }
     
     [Required]
     public string? HashedPassword { get; set; }
