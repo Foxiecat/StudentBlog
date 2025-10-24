@@ -95,9 +95,9 @@ public abstract class BaseEndpoint<TRequest, TResponse>(IHttpContextAccessor htt
     {
         string json = JsonSerializer.Serialize(payload, options);
         byte[] hash = SHA256.HashData(Encoding.UTF8.GetBytes(json));
-        StringSegment base64 = Convert.ToBase64String(hash);
+        string base64 = Convert.ToBase64String(hash);
 
-        return base64;
+        return new StringSegment($"\"{base64}\"");
     }
     protected bool IsNotModified(StringSegment etag)
     {
