@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Primitives;
+using src.Features.Shared.DTOs;
 using src.Features.Shared.Endpoints;
 using src.Features.Shared.Interfaces;
 using src.Features.Users.DTOs;
@@ -8,7 +9,9 @@ using src.Utilities;
 
 namespace src.Features.Users.Endpoints.Auth;
 
-public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<UserRequest, UserResponse>(accessor), IEndpoint
+public class RegisterEndpoint(
+    IHttpContextAccessor accessor,
+    LinkGenerator generator) : BaseEndpoint<UserRequest, UserResponse>(accessor), IEndpoint
 {
     public override void Configure(IEndpointRouteBuilder app)
     {
@@ -47,6 +50,17 @@ public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<User
                     return BadRequest("Failed to register user");
 
                 UserResponse response = mapper.ToResponse(addedUser!);
+                
+                response.Links.Add(
+                    new Link()
+                    {
+                        Href = generator?.GetPathByRouteValues(
+                            HttpContext,
+                            routeName: "GetUserById",
+                            values: new { id = response.Id}),
+                        Rel = "self",
+                        Type = string.Empty
+                    });
 
                 StringSegment etag = ComputeETag(response);
                 SetETag(etag);
