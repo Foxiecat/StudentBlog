@@ -26,6 +26,9 @@ public class StudentBlogDbContext(DbContextOptions<StudentBlogDbContext> options
                 .WithOne(post => post.User)
                 .HasForeignKey(post => post.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(user => user.Username).IsUnique();
+            entity.HasIndex(user => user.Email).IsUnique();
         });
 
         modelBuilder.Entity<Post>(entity =>
