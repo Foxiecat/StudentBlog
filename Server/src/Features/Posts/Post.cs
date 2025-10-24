@@ -13,17 +13,23 @@ public readonly record struct PostId(Guid Value)
 
 public class Post
 {
-    [Key]
-    public PostId Id { get; set; }
+    [Required, Key]
+    public PostId Id { get; init; }
     
-    [ForeignKey("UserId")]
-    public UserId UserId { get; set; }
+    [Required, ForeignKey("UserId")]
+    public UserId UserId { get; init; }
     
-    [Length(3, 50, ErrorMessage = "Invalid: Title must be between 3 and 50 characters long")]
-    public required string Title { get; set; }
+    [Required,
+     MinLength(3, ErrorMessage = "Invalid Length: Needs to be at least 3 characters"),
+     MaxLength(50, ErrorMessage = "Invalid Length: Cannot exceed 50 characters")]
+    public string? Title { get; set; }
     
-    public required string Content { get; set; }
-    public required DateTime DatePosted { get; set; }
+    [Required]
+    public string? Content { get; set; }
+    
+    [Required]
+    public DateTime DatePosted { get; set; }
+    
     
     // Navigation properties
     public virtual User? User { get; set; }
