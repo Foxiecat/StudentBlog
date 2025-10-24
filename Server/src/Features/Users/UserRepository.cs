@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using src.Database;
 using src.Features.Posts;
 using src.Features.Users.Interfaces;
+using src.Utilities;
 
 namespace src.Features.Users;
 
@@ -27,6 +28,15 @@ public class UserRepository(
     public async Task<User?> GetByIdAsync(Guid id)
     {
         return await dbContext.User.FirstOrDefaultAsync(user => user.Id.Value == id);
+    }
+
+    public async Task<IEnumerable<User>> GetPagedAsync(int pageIndex, int pageSize)
+    {
+        PaginatedList<User> paginatedList = await PaginatedList<User>
+            .CreateAsync(dbContext.User
+                .OrderBy(u => u.Username), pageIndex, pageSize);
+
+        return paginatedList;
     }
     
     public async Task<IEnumerable<User>> FindAsync(Expression<Func<User, bool>> predicate)
