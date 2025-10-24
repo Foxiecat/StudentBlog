@@ -23,22 +23,24 @@ services:
       - database
     networks:
       - studentblog-net
+    env_file: ".env"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__PostgresConnection=Host=studentblog-db;Port=5432;Database=StudentBlog;Username=admin;Password=StUdentBl0g_db;
-      - JWT__Key=Not_A_Real_Password_Was_Randomly_Generated_For_This_Project_Mosaic_Quantum_Game_Rancidity_Darkish_Darkroom_Dazzling_Swapping1_Spokesman;
-      - JWT__Issuer=http://localhost:8080;
-      - JWT__Audience=http://localhost:8080;
+      - ConnectionStrings__PostgresConnection=Host=studentblog-db;Port=5432;Database=${DATABASE};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};
+      - JWT__Key=${JWT_KEY}
+      - JWT__Issuer=https://localhost:81/api/auth/;
+      - JWT__Audience=https://localhost:81/api/;
     
   database:
     container_name: studentblog-db
     image: postgres:17
     ports:
       - "5432:5432"
+    env_file: ".env"
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: StUdentBl0g_db
-      POSTGRES_DB: StudentBlog
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DATABASE}
     networks:
       - studentblog-net
     volumes:
