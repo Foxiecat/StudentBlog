@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using src.Database;
-using src.Features.Posts;
 using src.Features.Users.Interfaces;
 using src.Utilities;
 

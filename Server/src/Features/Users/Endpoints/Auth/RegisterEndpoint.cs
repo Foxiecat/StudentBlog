@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Primitives;
 using src.Features.Shared.DTOs;
 using src.Features.Shared.Endpoints;

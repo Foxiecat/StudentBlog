@@ -1,6 +1,4 @@
 using System.Reflection;
-using src.Features.Shared.Interfaces;
-using src.Features.Users;
 using src.Utilities;
 
 namespace src.Extensions;
