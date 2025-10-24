@@ -1,6 +1,8 @@
+using src.Features.Shared.DTOs;
+
 namespace src.Features.Users.DTOs;
 
-public record UserResponse
+public record UserResponse : HalResponse
 {
     public Guid Id { get; init; }
     public string? Username { get; set; }
