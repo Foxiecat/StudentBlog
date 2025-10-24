@@ -6,6 +6,7 @@ using Scalar.AspNetCore;
 using Serilog;
 using src.Database;
 using src.Extensions;
+using src.Middleware;
 
 namespace src;
 
@@ -24,6 +25,11 @@ public class Program
             builder.Services.RegisterMappers();
 
             builder.Services.AddEndpoints();
+
+            builder.Services.AddProblemDetails();
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            
+            //builder.Services.AddJwtServices(builder.Configuration);
 
             builder.Services.AddDbContext<StudentBlogDbContext>(options => 
                 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
@@ -48,6 +54,9 @@ public class Program
             }
 
             app.UseHttpsRedirection();
+
+            app.UseExceptionHandler();
+            
             app.UseAuthorization();
 
             /*ApiVersionSet apiVersionSet = app.NewApiVersionSet()
