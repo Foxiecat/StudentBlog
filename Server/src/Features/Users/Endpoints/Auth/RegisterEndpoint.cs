@@ -7,7 +7,7 @@ using src.Utilities;
 
 namespace src.Features.Users.Endpoints.Auth;
 
-public class Register(IHttpContextAccessor accessor) : BaseEndpoint<UserRequest, UserResponse>(accessor), IEndpoint
+public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<UserRequest, UserResponse>(accessor), IEndpoint
 {
     public override void Configure(IEndpointRouteBuilder app)
     {
