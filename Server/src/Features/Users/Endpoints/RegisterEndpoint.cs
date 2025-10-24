@@ -41,7 +41,7 @@ public class RegisterEndpoint(
                 user.Id = Users.UserId.NewId;
                 user.Created = DateTime.UtcNow;
                 user.Updated = DateTime.UtcNow;
-                user.IsAdminUser = false;
+                user.IsAdminUser = false; // TODO: Replace with Roles list
                 user.HashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(request.Password);
 
                 User? addedUser = await repository.AddAsync(user);
