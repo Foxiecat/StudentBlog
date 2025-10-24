@@ -12,26 +12,41 @@ public readonly record struct UserId(Guid Value)
 
 public class User
 {
-    [Key]
+    [Required, Key]
     public UserId Id { get; set; }
-     
-    [Length(3, 30, ErrorMessage = "Invalid: Username has to be between 3 and 30 characters")]
-    public required string Username { get; set; }
     
-    [Length(2, 50, ErrorMessage = "Invalid: Firstname has to be between 2 and 50 characters")]
-    public required string Firstname { get; set; }
+    [Required]
+    [MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters")]
+    [MaxLength(30, ErrorMessage = "Invalid Length: Cannot exceed 30 characters")]
+    public string Username { get; init; } = string.Empty;
     
-    [Length(2, 50, ErrorMessage = "Invalid: Lastname has to be between 2 and 50 characters")]
-    public required string Lastname { get; set; }
+    [Required,
+     MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters"),
+     MaxLength(50, ErrorMessage = "Invalid Length: Cannot exceed 50 characters")]
+    public string Firstname { get; init; } = string.Empty;
     
-    [EmailAddress]
-    public required string Email { get; set; }
-    public required byte[] HashedPassword { get; set; }
-    public required DateTime Created { get; set; }
-    public required DateTime Updated { get; set; }
-    public required bool IsAdminUser { get; set; }
+    [Required,
+     MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters"),
+     MaxLength(50, ErrorMessage = "Invalid Length: Cannot exceed 50 characters")]
+    public string? Lastname { get; init; } = string.Empty;
+    
+    [Required, EmailAddress]
+    public string? Email { get; init; }
+    
+    [Required]
+    public string? HashedPassword { get; set; }
+    
+    [Required]
+    public DateTime Created { get; set; }
+    
+    [Required]
+    public DateTime Updated { get; set; }
+    
+    [Required]
+    public bool IsAdminUser { get; set; }
+    
     
     // Navigation properties
-    public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
-    public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+    public ICollection<Post> Posts { get; init; } = new HashSet<Post>();
+    public ICollection<Comment> Comments { get; init; } = new HashSet<Comment>();
 }
