@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using src.Features.Comments;
 using src.Features.Posts;
+using src.Features.Users.Interfaces;
 
 namespace src.Features.Users;
 
@@ -44,6 +45,9 @@ public class User
     
     [Required]
     public bool IsAdminUser { get; set; }
+
+
+    public ICollection<IRole> Roles { get; set; } = new List<IRole>();
     
     
     // Navigation properties

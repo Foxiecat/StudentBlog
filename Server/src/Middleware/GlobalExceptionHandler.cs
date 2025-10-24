@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +38,7 @@ public class GlobalExceptionHandler(
     {
         return exception switch
         {
+            NoNullAllowedException => (StatusCodes.Status406NotAcceptable, "No Null Allowed"),
             _ => (StatusCodes.Status500InternalServerError, "Internal Server Error")
         };
     }
