@@ -44,6 +44,34 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
 
     public (string? userId, IEnumerable<string>? roles) ValidateAccessToken(string accessToken)
     {
-        throw new NotImplementedException();
+        try
+        {
+            JwtSecurityTokenHandler tokenHandler = new();
+            SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(options.Value.Key ?? throw new InvalidOperationException()));
+
+            tokenHandler.ValidateToken(accessToken, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                IssuerSigningKey = key,
+                ValidIssuer = options.Value.Issuer,
+                ValidAudience = options.Value.Audience,
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
+            
+            JwtSecurityToken jwtToken = (JwtSecurityToken)validatedToken;
+            
+            string userId = jwtToken.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
+            IEnumerable<string> roles = jwtToken.Claims
+                .Where(token => token.Type == ClaimTypes.Role)
+                .Select(token => token.Value);
+            return (userId, roles);
+        }
+        catch (Exception e)
+        {
+            return (null, null);
+        }
     }
 }
