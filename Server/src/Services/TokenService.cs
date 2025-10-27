@@ -21,9 +21,8 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.Username)
         ];
-
-        foreach (IRole role in user.Roles)
-            claims.Add(new Claim(ClaimTypes.Role, role.Name!));
+        
+        claims.AddRange(user.Roles.Select(role => new Claim(ClaimTypes.Role, role.Name!)));
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.Key ?? throw new NoNullAllowedException("JWT Key cannot be null!")));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
