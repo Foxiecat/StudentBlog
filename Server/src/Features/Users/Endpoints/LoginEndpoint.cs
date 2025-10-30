@@ -1,5 +1,6 @@
 using src.Features.Shared.Endpoints;
 using src.Features.Users.DTOs;
+using src.Features.Users.Interfaces;
 using src.Utilities;
 
 namespace src.Features.Users.Endpoints;
@@ -20,6 +21,15 @@ public class LoginEndpoint(
 
     private async Task<IResult> HandleAsync(LoginRequest request, HttpContext context, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        IUserRepository repository = GetRequired<IUserRepository>();
+
+        User? user = (await repository.FindAsync(user =>
+            user.Username == request.UsernameOrEmail ||
+            user.Email == request.UsernameOrEmail)).First();
+
+        if (!BCrypt.Net.BCrypt.EnhancedVerify(request.Password, user.HashedPassword))
+            return Unauthorized();
+
+        return Ok();
     }
 }
