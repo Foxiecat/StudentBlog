@@ -72,7 +72,7 @@ app.UseAuthorization();
 RouteGroupBuilder versionedGroup = app
     .MapGroup("api/v{version:apiVersion}")
     .WithApiVersionSet(apiVersionSet);*/
-            
+
 app.MapEndpoints();
 
 app.Run();
