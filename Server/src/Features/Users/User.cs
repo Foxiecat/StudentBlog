@@ -42,12 +42,8 @@ public class User
     
     [Required]
     public DateTime Updated { get; set; }
-    
-    [Required]
-    public bool IsAdminUser { get; set; }
 
-
-    public ICollection<IRole> Roles { get; set; } = new List<IRole>();
+    [Required] public ICollection<Role> Roles { get; set; } = new List<Role>();
     
     
     // Navigation properties

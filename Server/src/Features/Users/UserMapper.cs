@@ -25,6 +25,5 @@ public class UserMapper : IMapper<UserRequest, UserResponse, User>
             Email = entity.Email,
             Created = entity.Created,
             Updated = entity.Updated,
-            IsAdminUser = entity.IsAdminUser
         };
 }
