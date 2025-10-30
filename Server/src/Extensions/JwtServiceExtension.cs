@@ -10,7 +10,7 @@ namespace src.Extensions;
 
 public static class JwtServiceExtension
 {
-    public static void AddJwtAuthServices(this IServiceCollection services, IConfiguration configuration)
+    public static void AddJwtServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<JwtMiddleware>();
