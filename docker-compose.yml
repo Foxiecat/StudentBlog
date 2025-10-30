@@ -1,36 +1,29 @@
 services:
-  web:
-    container_name: studentblog-web
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-      - "81:81"
-    depends_on:
-      - api
-    networks:
-      - studentblog-net
-
   api:
     container_name: studentblog-api
     build:
       context: ./Server
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     networks:
       - studentblog-net
     env_file: ".env"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/studentblog.pfx
       - ConnectionStrings__PostgresConnection=Host=studentblog-db;Port=5432;Database=${DATABASE};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};
       - JWT__Key=${JWT_KEY}
-      - JWT__Issuer=https://localhost:81/api/auth/;
-      - JWT__Audience=https://localhost:81/api/;
-    
+      - JWT__Issuer=https://localhost:8081/api/auth/;
+      - JWT__Audience=https://localhost:8081/api/;
+    volumes:
+      - ${HOME}/.microsoft/usersecrets/:/home/app/.microsoft/usersecrets/
+      - ${HOME}/.aspnet/https/:/https/
+  
   database:
     container_name: studentblog-db
     image: postgres:17
@@ -44,7 +37,13 @@ services:
     networks:
       - studentblog-net
     volumes:
-    - studentblog-volume:/var/lib/postgresql/data
+      - studentblog-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${DATABASE}"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
 
 networks:
   studentblog-net:

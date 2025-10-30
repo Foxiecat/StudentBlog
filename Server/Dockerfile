@@ -8,10 +8,13 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/src.csproj", "src/"]
-RUN dotnet restore "src/src.csproj"
+RUN dotnet restore "./src/src.csproj"
 COPY . .
 WORKDIR "/src/src"
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
 RUN dotnet build "./src.csproj" -c $BUILD_CONFIGURATION -o /app/build
+ENTRYPOINT dotnet ef database update --environment Development --project src/src
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
