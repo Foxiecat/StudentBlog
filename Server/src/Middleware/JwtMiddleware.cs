@@ -12,7 +12,7 @@ public class JwtMiddleware(
 
         if (token is not null)
         {
-            (string? userId, IEnumerable<string>? roles) = tokenService.ValidateAccessToken(token);
+            (string? userId, IEnumerable<string>? roles) = await tokenService.ValidateAccessToken(token);
             logger.LogInformation("User: {UserId}, Roles: {roles}", userId, roles);
 
             context.Items["UserId"] = userId;

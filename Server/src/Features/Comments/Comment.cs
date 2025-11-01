@@ -5,22 +5,16 @@ using src.Features.Users;
 
 namespace src.Features.Comments;
 
-public readonly record struct CommentId(Guid Value)
-{
-    public static CommentId NewId => new(Guid.NewGuid());
-    public static CommentId Empty => new(Guid.Empty);
-}
-
 public class Comment
 {
     [Key]
-    public CommentId Id { get; set; }
+    public Guid Id { get; set; }
     
     [ForeignKey("PostId")]
-    public PostId PostId { get; set; }
+    public Guid PostId { get; set; }
 
     [ForeignKey("UserId")]
-    public UserId UserId { get; set; }
+    public Guid UserId { get; set; }
     
     public required string Content { get; set; }
     public required DateTime DateCommented { get; set; }

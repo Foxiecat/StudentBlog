@@ -1,9 +1,16 @@
+using Microsoft.AspNetCore.Identity;
 using src.Features.Users.Interfaces;
 
 namespace src.Features.Users;
 
-public class Role : IRole
+public class Role() : IdentityRole<Guid>
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
+    public sealed override Guid Id { get; set; }
+    public sealed override string? Name { get; set; }
+
+    public Role(string roleName) : this()
+    {
+        Id = Guid.NewGuid();
+        Name = roleName;
+    }
 }

@@ -26,14 +26,14 @@ public class UserRepository(
     
     public async Task<User?> GetByIdAsync(Guid id)
     {
-        return await dbContext.User.FirstOrDefaultAsync(user => user.Id.Value == id);
+        return await dbContext.User.FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<IEnumerable<User>> GetPagedAsync(int pageIndex, int pageSize)
     {
         PaginatedList<User> paginatedList = await PaginatedList<User>
             .CreateAsync(dbContext.User
-                .OrderBy(u => u.Username), pageIndex, pageSize);
+                .OrderBy(u => u.UserName), pageIndex, pageSize);
 
         return paginatedList;
     }
@@ -47,7 +47,7 @@ public class UserRepository(
 
     public async Task<User?> UpdateAsync(User entity)
     {
-        User? existingUser = await dbContext.User.FindAsync(entity.Id.Value);
+        User? existingUser = await dbContext.User.FindAsync(entity.Id);
 
         if (existingUser == null)
         {
@@ -57,7 +57,7 @@ public class UserRepository(
         
         existingUser.Firstname = entity.Firstname;
         existingUser.Lastname = entity.Lastname;
-        existingUser.Username = entity.Username;
+        existingUser.UserName = entity.UserName;
         existingUser.Email = entity.Email;
         existingUser.Updated = DateTime.UtcNow;
 

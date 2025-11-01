@@ -4,6 +4,6 @@ namespace src.Services.Interfaces;
 
 public interface ITokenService
 {
-    string CreateTokenAsync(User user);
-    (string? userId, IEnumerable<string>? roles) ValidateAccessToken(string accessToken);
+    Task<string> CreateTokenAsync(User user);
+    Task<(string? userId, IEnumerable<string>? roles)> ValidateAccessToken(string accessToken);
 }

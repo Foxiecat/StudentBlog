@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using Serilog;
 using src.Database;
 using src.Extensions;
+using src.Features.Users;
 using src.Middleware;
+using src.Utilities;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -28,6 +31,9 @@ builder.Services.AddDbContext<StudentBlogDbContext>(options =>
         optionsBuilder => optionsBuilder.MigrationsAssembly("src"));
 });
 
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<StudentBlogDbContext>();
+
 builder.Host.UseSerilog((context, config) => 
     config.ReadFrom.Configuration(context.Configuration));
 
@@ -41,10 +47,15 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 
-    StudentBlogDbContext application = app.Services.CreateScope().ServiceProvider.GetRequiredService<StudentBlogDbContext>();
-    IEnumerable<string>? pendingMigrations = await application.Database.GetPendingMigrationsAsync();
-    if (!pendingMigrations.Contains(null))
-        await application.Database.MigrateAsync();
+    using IServiceScope scope = app.Services.CreateScope();
+    StudentBlogDbContext dbContext = scope.ServiceProvider.GetRequiredService<StudentBlogDbContext>();
+    await dbContext.Database.MigrateAsync();
+
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+    if (!await roleManager.RoleExistsAsync(Roles.Admin))
+        await roleManager.CreateAsync(new Role(Roles.Admin));
+    if (await roleManager.RoleExistsAsync(Roles.User))
+        await roleManager.CreateAsync(new Role(Roles.User));
 }
 
 app.UseHttpsRedirection();

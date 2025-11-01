@@ -5,11 +5,12 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
+using src.Features.Shared.Interfaces;
 using src.Utilities;
 
 namespace src.Features.Shared.Endpoints;
 
-public abstract class BaseEndpoint<TRequest, TResponse>(IHttpContextAccessor httpContextAccessor)
+public abstract class BaseEndpoint<TRequest, TResponse, TEntity>(IHttpContextAccessor httpContextAccessor)
 {
     private ILogger? _logger;
     
@@ -24,6 +25,8 @@ public abstract class BaseEndpoint<TRequest, TResponse>(IHttpContextAccessor htt
     
     // Logger helper on-demand
     protected ILogger Logger => _logger ??= GetRequired<ILoggerFactory>().CreateLogger(GetType());
+
+    protected IBaseRepository<TEntity> Repository => GetRequired<IBaseRepository<TEntity>>();
     
     // User/Identity helpers
     protected ClaimsPrincipal User => HttpContext.User;

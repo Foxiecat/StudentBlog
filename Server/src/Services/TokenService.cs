@@ -13,16 +13,16 @@ namespace src.Services;
 
 public class TokenService(IOptions<JwtOptions> options) : ITokenService
 {
-    public string CreateTokenAsync(User user)
+    public async Task<string> CreateTokenAsync(User user)
     {
         List<Claim> claims =
         [
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Name, user.Username)
+            new(ClaimTypes.Name, user.UserName)
         ];
         
-        claims.AddRange(user.Roles.Select(role => new Claim(ClaimTypes.Role, role.Name!)));
+        //claims.AddRange(user.Roles.Select(role => new Claim(ClaimTypes.Role, role.Name!)));
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.Key ?? throw new NoNullAllowedException("JWT Key cannot be null!")));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -35,13 +35,12 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
             SigningCredentials = credentials
         };
 
-
         JwtSecurityTokenHandler tokenHandler = new();
         SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
 
-    public (string? userId, IEnumerable<string>? roles) ValidateAccessToken(string accessToken)
+    public async Task<(string? userId, IEnumerable<string>? roles)> ValidateAccessToken(string accessToken)
     {
         try
         {

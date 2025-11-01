@@ -9,7 +9,7 @@ public class UserMapper : IMapper<UserRequest, UserResponse, User>
     {
         return new User
         {
-            Username = request.Username,
+            UserName = request.Username,
             Firstname = request.Firstname,
             Lastname = request.Lastname,
             Email = request.Email
@@ -18,8 +18,8 @@ public class UserMapper : IMapper<UserRequest, UserResponse, User>
 
     public UserResponse ToResponse(User entity) => new()
         {
-            Id = entity.Id.Value,
-            Username = entity.Username,
+            Id = entity.Id,
+            Username = entity.UserName,
             Firstname = entity.Firstname,
             Lastname = entity.Lastname,
             Email = entity.Email,

@@ -6,11 +6,9 @@ using src.Features.Users.DTOs;
 using src.Features.Users.Interfaces;
 using src.Utilities;
 
-namespace src.Features.Users.Endpoints.Auth;
+namespace src.Features.Users.Endpoints;
 
-public class RegisterEndpoint(
-    IHttpContextAccessor accessor,
-    LinkGenerator generator) : BaseEndpoint<UserRequest, UserResponse>(accessor), IEndpoint
+public class RegisterEndpoint(IHttpContextAccessor accessor) : BaseEndpoint<UserRequest, UserResponse, User>(accessor), IEndpoint
 {
     public override void Configure(IEndpointRouteBuilder app)
     {
@@ -25,28 +23,36 @@ public class RegisterEndpoint(
         Dictionary<string, string[]> errors = [];
         if (string.IsNullOrWhiteSpace(request.Email)) errors["email"] = ["Email is required."];
         if (string.IsNullOrWhiteSpace(request.Password)) errors["password"] = ["Password is required"];
+        
         return (errors.Count == 0, errors);
     }
 
-    private async Task<IResult> HandleAsync(UserRequest request, CancellationToken ct)
+    private async Task<IResult> HandleAsync(
+        UserRequest request,
+        LinkGenerator generator,
+        CancellationToken ct)
     {
+        var mapper = GetRequired<IMapper<UserRequest, UserResponse, User>>();
         return await ExecuteAsync(
             request,
             action: async cancellationToken =>
             {
-                var mapper = GetRequired<IMapper<UserRequest, UserResponse, User>>();
-                IUserRepository repository = GetRequired<IUserRepository>();
-
+                bool usernameTaken = (await Repository.FindAsync(user => user.UserName == request.Username)).Any();
+                bool emailTaken = (await Repository.FindAsync(user => user.Email == request.Email)).Any();
+                if (usernameTaken)
+                    return BadRequest("Username Is Already Taken!");
+                if (emailTaken) 
+                    return BadRequest("Email Is Already Taken!");
+                
                 User user = mapper.ToEntity(request);
-                user.Id = Users.UserId.NewId;
+                user.Id = Guid.NewGuid();
                 user.Created = DateTime.UtcNow;
                 user.Updated = DateTime.UtcNow;
-                user.Roles = [ new Role {Id = Guid.NewGuid(), Name = "User"} ];
-                user.HashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(request.Password);
+                user.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(request.Password);
 
-                User? addedUser = await repository.AddAsync(user);
+                User? addedUser = await Repository.AddAsync(user);
                 if (addedUser is null)
-                    return BadRequest("Failed to register user");
+                    return BadRequest("Failed to register user. Try Again!");
 
                 UserResponse response = mapper.ToResponse(addedUser!);
                 

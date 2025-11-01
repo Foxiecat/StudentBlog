@@ -1,25 +1,19 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using src.Features.Comments;
 using src.Features.Posts;
-using src.Features.Users.Interfaces;
 
 namespace src.Features.Users;
 
-public readonly record struct UserId(Guid Value)
-{
-    public static UserId NewId => new(Guid.NewGuid());
-    public static UserId Empty => new(Guid.Empty);
-}
-
-public class User
+public class User : IdentityUser<Guid>
 {
     [Required, Key]
-    public UserId Id { get; set; }
+    public override Guid Id { get; set; }
     
     [Required]
     [MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters")]
     [MaxLength(30, ErrorMessage = "Invalid Length: Cannot exceed 30 characters")]
-    public string Username { get; set; } = string.Empty;
+    public override string UserName { get; set; } = string.Empty;
     
     [Required,
      MinLength(2, ErrorMessage = "Invalid Length: Needs to be at least 2 characters"),
@@ -32,18 +26,16 @@ public class User
     public string? Lastname { get; set; } = string.Empty;
     
     [Required, EmailAddress]
-    public string? Email { get; set; }
+    public override string? Email { get; set; }
     
     [Required]
-    public string? HashedPassword { get; set; }
+    public override string? PasswordHash { get; set; }
     
     [Required]
     public DateTime Created { get; set; }
     
     [Required]
     public DateTime Updated { get; set; }
-
-    [Required] public ICollection<Role> Roles { get; set; } = new List<Role>();
     
     
     // Navigation properties

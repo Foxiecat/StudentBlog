@@ -1,13 +1,16 @@
 using System.Reflection;
+using src.Features.Shared.Interfaces;
+using src.Features.Users;
+using src.Features.Users.Interfaces;
 using src.Utilities;
 
 namespace src.Extensions;
 
 public static class ServiceCollectionExtension
 {
-    public static void RegisterMappers(this IServiceCollection services, Assembly? assembly = null)
+    public static void RegisterMappers(this IServiceCollection services)
     {
-        assembly ??= Types.Program.Assembly;
+        Assembly assembly = Types.Program.Assembly;
 
         List<Type> mapperTypes = assembly.GetTypes()
             .Where(type => type is { IsClass: true, IsAbstract: false } && type.GetInterfaces()
@@ -21,9 +24,9 @@ public static class ServiceCollectionExtension
         }
     }
     
-    public static void RegisterRepositories(this IServiceCollection services, Assembly? assembly = null)
+    public static void RegisterRepositories(this IServiceCollection services)
     {
-        assembly ??= Types.Program.Assembly;
+        Assembly assembly = Types.Program.Assembly;
     
         List<Type> reposTypes = assembly.GetTypes()
             .Where(t => t is { IsClass: true, IsAbstract: false } && t.GetInterfaces()
