@@ -11,7 +11,7 @@ COPY ["src/src.csproj", "src/"]
 RUN dotnet restore "./src/src.csproj"
 COPY . .
 WORKDIR "/src/src"
-RUN dotnet tool install --global dotnet-ef
+RUN dotnet tool install --global dotnet-ef --version 9.0.11
 ENV PATH="$PATH:/root/.dotnet/tools"
 RUN dotnet build "./src.csproj" -c $BUILD_CONFIGURATION -o /app/build
 ENTRYPOINT dotnet ef database update --environment Development --project src/src

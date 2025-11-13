@@ -7,7 +7,7 @@ namespace src.Extensions;
 
 public static class EndpointRegistrationExtensions
 {
-    public static IServiceCollection AddEndpoints(this IServiceCollection services, Assembly? assembly = null)
+    public static void RegisterEndpoints(this IServiceCollection services, Assembly? assembly = null)
     {
         assembly ??= Types.Program.Assembly;
         
@@ -19,8 +19,6 @@ public static class EndpointRegistrationExtensions
             .ToArray();
         
         services.TryAddEnumerable(endpointServiceDescriptors);
-
-        return services;
     }
 
     public static IApplicationBuilder MapEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)

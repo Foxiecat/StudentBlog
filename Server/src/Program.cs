@@ -12,9 +12,10 @@ Log.Logger = new LoggerConfiguration()
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
             
 builder.Services.AddOpenApi();
+
 builder.Services.RegisterRepositories();
 builder.Services.RegisterMappers();
-builder.Services.AddEndpoints();
+builder.Services.RegisterEndpoints();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -22,11 +23,7 @@ builder.Services.AddJwtServices(builder.Configuration);
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
-builder.Services.AddDbContext<StudentBlogDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"),
-        optionsBuilder => optionsBuilder.MigrationsAssembly("src"));
-});
+builder.Services.AddDatabase(builder.Configuration);
 
 builder.Host.UseSerilog((context, config) => 
     config.ReadFrom.Configuration(context.Configuration));
@@ -52,15 +49,6 @@ app.UseHttpsRedirection();
 app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
-
-/*ApiVersionSet apiVersionSet = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(1))
-    .ReportApiVersions()
-    .Build();
-
-RouteGroupBuilder versionedGroup = app
-    .MapGroup("api/v{version:apiVersion}")
-    .WithApiVersionSet(apiVersionSet);*/
             
 app.MapEndpoints();
 

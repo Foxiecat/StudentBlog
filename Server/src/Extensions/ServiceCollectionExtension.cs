@@ -1,4 +1,6 @@
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using src.Database;
 using src.Utilities;
 
 namespace src.Extensions;
@@ -35,5 +37,16 @@ public static class ServiceCollectionExtension
             Type interfaceType = repoType.GetInterfaces().First();
             services.AddScoped(interfaceType, repoType);
         }
+    }
+
+    
+    
+    public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<StudentBlogDbContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"),
+                optionsBuilder => optionsBuilder.MigrationsAssembly("src"));
+        });
     }
 }

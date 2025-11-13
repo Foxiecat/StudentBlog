@@ -5,7 +5,7 @@ using src.Utilities;
 
 namespace src.Features.Users.Endpoints;
 
-public abstract record LoginRequest(string UsernameOrEmail, string Password);
+public sealed record LoginRequest(string UsernameOrEmail, string Password);
 
 public class LoginEndpoint(
     IHttpContextAccessor accessor, 
